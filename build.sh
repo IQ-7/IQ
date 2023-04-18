@@ -1,6 +1,6 @@
 # sync rom
-repo init --depth=1 --no-repo-verify -u https://github.com/NusantaraProject-ROM/android_manifest -b 10 -g default,-mips,-darwin,-notdefault
-git clone https://github.com/IQ-7/local_manifest --depth 1 -b nad-10 .repo/local_manifests
+repo init --depth=1 --no-repo-verify -u https://github.com/PixelExperience/manifest -b eleven -g default,-mips,-darwin,-notdefault
+git clone https://github.com/IQ-7/local_manifest --depth 1 -b pixel .repo/local_manifests
 repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j8
 
 # build rom
@@ -10,12 +10,12 @@ timeStart
 source build/envsetup.sh
 export BUILD_USERNAME=zacky
 export BUILD_HOSTNAME=android-build
-lunch nad_whyred-userdebug
+lunch aosp_ginkgo-userdebug
 mkfifo reading # Jangan di Hapus
 tee "${BUILDLOG}" < reading & # Jangan di Hapus
 build_message "Building Started" # Jangan di Hapus
 progress & # Jangan di Hapus
-mka nad -j8 > reading & sleep 95m # Jangan di hapus text line (> reading)
+mka bacon -j8 > reading & sleep 95m # Jangan di hapus text line (> reading)
 
 retVal=$?
 timeEnd
