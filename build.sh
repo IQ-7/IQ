@@ -8,14 +8,14 @@ source $CIRRUS_WORKING_DIR/config
 timeStart
 
 source build/envsetup.sh
-export BUILD_USERNAME=nobody
-export BUILD_HOSTNAME=android-build
+export BUILD_USERNAME="$USERNAME"
+export BUILD_HOSTNAME="$HOSTNAME"
 lunch superior_whyred-userdebug
 mkfifo reading # Jangan di Hapus
 tee "${BUILDLOG}" < reading & # Jangan di Hapus
 build_message "Building Started" # Jangan di Hapus
 progress & # Jangan di Hapus
-m bacon -j$(nproc --all) > reading #& sleep 95m # Jangan di hapus text line (> reading)
+mka bacon -j8 > reading #& sleep 95m # Jangan di hapus text line (> reading)
 
 retVal=$?
 timeEnd
